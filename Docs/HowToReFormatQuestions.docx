@@ -1,0 +1,20 @@
+HOW TO REFORMAT QUESTIONS FROM QUESTION MARK PERCEPTION FOR MATHSEG
+=========================================================================================
+1)find/replace %QUESTION.NUMBER% with 1
+-----------------------------------------------------------------------------------------
+2)remove applet calls (Applet MOSTLY, but not always, Identical) make sure to leave the quotes or 
+there are all sorts of problems
+-----------------------------------------------------------------------------------------
+3)insert      myAnswer = document.forms[0].elements[item+3].value;     at end of process1 fn
+-----------------------------------------------------------------------------------------
+4)find/replace <PARAM NAME='eq' VALUE=' with nothing (i.e. remove all instances)
+-----------------------------------------------------------------------------------------
+5)find/replace  ' ></APPLET> with nothing (i.e. remove all instances)
+	(sometimes there is different spacing so try different combinations of spacing i.e. '>  ' >  etc)
+-----------------------------------------------------------------------------------------
+6)find/replace %START_MSTYLE% with <mathstyle> (sometimes %SM% is used instead of %START_MSTYLE%)
+-----------------------------------------------------------------------------------------
+7)find/replace %END_MSTYLE% with </mathstyle> (sometimes %EM% is used instead of %END_MSTYLE%)
+-----------------------------------------------------------------------------------------
+8) check for dodgy tag bracketing e.g. << or >>
+-----------------------------------------------------------------------------------------

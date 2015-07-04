@@ -1,0 +1,57 @@
+/*search on description****************************************************************/
+SELECT * FROM <DBname>.topics WHERE Description LIKE "%<search term>%";
+
+/*create new question in existing topic************************************************/
+INSERT INTO <DBname>.topics (ID,pid,tname,topic,difficulty,syllabus,level,root_id) 
+VALUES (
+		<id of last q + 1>, 
+		<ID of topic in tree table>, 
+		<name of topic table>),
+		<topic string path>, --for display purposes (remember to add escape char to \)
+		<difficulty>,
+		<syllabus>,
+		<level>,
+		<root id> --little bit ambiguous on this one.
+		);
+		
+INSERT INTO <DBname>.<topic table> (Question_ID,QML_D,Description,parent_ID,Parent_topic) 
+VALUES (
+		<ID of question in topic table>, 
+		<javascript>,  -- plus script tags
+		<text description>),
+		<ID of parent topic in tree table>, 
+		<Parent_topic> --for display purposes I think
+		);
+		
+		
+/*create new topic*********************************************************************/
+INSERT INTO <DBname>.tree (id,pid,name,url,root,qtable)
+VALUES
+	(
+	<id of previous q + 1>,
+	<id of parent topic in tree table>,
+	<name of new topic>,
+	<'main.jsp?parent_ID=[this.id]'>, -- if topic has questions, else leave blank
+	<level of nesting>,
+	<the table associated with this topic>
+	);
+	
+/*create new subject (new topic table)*/
+CREATE TABLE `<subjectName>` (
+  `Question_ID` int(11) unsigned NOT NULL,
+  `QML_D` text,
+  `Description` text NOT NULL,
+  `parent_ID` int(11) unsigned NOT NULL,
+  `Parent_topic` text,
+  PRIMARY KEY  (`Question_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO <DBname>.tree (id,pid,name,url,root,qtable)
+Values(
+	<id of last tree row + 1>,
+	1,
+	<topic name>,
+	<leave blank>,
+	1,
+	<subjectName> -- as in first part of these two queries
+);
